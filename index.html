@@ -4,10 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./sass/main.scss" />
+    <script src="./src/app.js" defer></script>
+
     <title>Journal App</title>
   </head>
   <body>
-    <header></header>
-    <main></main>
+    <main class="main">
+      <aside class="sidebar">
+        <input
+          class="author-name-box"
+          type="text"
+          maxlength="30"
+          value="Diário de..."
+        />
+      </aside>
+      <div class="journal-box">
+        <div class="journal-box--header">
+          <input
+            type="text"
+            class="journal-file-name"
+            value="Nome do Arquivo"
+          />
+        </div>
+        <div class="journal-box--journal">
+          <div class="rich-text-editor"></div>
+          <div class="journal-text-area" contenteditable="true"></div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
