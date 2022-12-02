@@ -13,10 +13,37 @@ $color-darker-white: #ddd;
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   flex: 0 1 300px;
   background-color: $color-medium-white;
   height: 100vh;
   border-right: 1.5px solid rgba($color-darker-white, 0.5);
+}
+
+.file-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+  list-style: none;
+
+  .file-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 90%;
+    border-radius: 300px;
+    cursor: pointer;
+
+    svg {
+      height: 24px;
+      width: 24px;
+      fill: #333;
+    }
+  }
 }
 
 .journal-box {
@@ -32,17 +59,35 @@ $color-darker-white: #ddd;
 }
 
 .journal-box--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 2rem;
   width: 100%;
   background-color: $color-medium-white;
   border-bottom: 1.5px solid rgba($color-darker-white, 0.5);
 }
 
+.icons-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 2rem;
+}
+
+.save-disk-icon,
+.dark-mode-moon-icon {
+  height: 22px;
+  width: 22px;
+  fill: #555;
+  cursor: pointer;
+}
+
 %input-basic {
   height: 2rem;
   width: 100%;
-  padding: 0.4rem 0.5rem;
-  text-align: center;
+  padding-left: 2rem;
   background-color: transparent;
   font-size: 16px;
   font-weight: 600;
@@ -61,31 +106,45 @@ $color-darker-white: #ddd;
 
 .journal-file-name {
   @extend %input-basic;
-  text-align: start;
-  padding-left: 2rem;
+  width: 80%;
 }
 
 .journal-box--journal {
   display: flex;
   flex-direction: column;
-  flex: 0 1 90vh;
+  flex: 0 1 93vh;
   margin: 0 1rem;
   background-color: white;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .rich-text-editor {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  gap: 1.5rem;
   width: 100%;
   height: 30px;
-  background-color: #eee;
+  background-color: white;
+  border-bottom: 1px solid rgba($color-darker-white, 0.5);
+}
+
+.btn {
+  color: #555;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .journal-text-area {
+  font-size: 1.25rem;
+  columns: #333;
   background-color: white;
   padding: 1.5rem 2rem;
-  width: 1100px;
-
+  width: 80vw;
   height: 100%;
+  text-indent: 20px;
+
   &:focus-visible {
     outline: none;
   }
