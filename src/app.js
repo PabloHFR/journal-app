@@ -1,3 +1,5 @@
+import FilesAPI from "./filesAPI";
+
 const richTextEditorButtonsElement = document.querySelectorAll(".btn");
 
 richTextEditorButtonsElement.forEach((button) => {
