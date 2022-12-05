@@ -5,6 +5,10 @@ const mainHtmlElement = document.querySelector(".main");
 const richTextEditorButtonsElement = document.querySelectorAll(".btn");
 
 const view = new FilesView(mainHtmlElement, {
+  onFileAdd() {
+    console.log("Add button clicked");
+  },
+
   onFileSelect(id) {
     console.log("File:" + id);
   },

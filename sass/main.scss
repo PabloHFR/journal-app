@@ -15,11 +15,16 @@ $color-darker-white: #ddd;
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   flex: 0 1 300px;
   background-color: $color-medium-white;
   height: 100vh;
   border-right: 1.5px solid rgba($color-darker-white, 0.5);
+}
+
+.author-name-box {
+  @extend %input-basic;
+  margin-bottom: 0.5rem;
 }
 
 .file-box {
@@ -35,7 +40,6 @@ $color-darker-white: #ddd;
     gap: 0.5rem;
     align-items: center;
     width: 90%;
-    border-radius: 300px;
     cursor: pointer;
 
     svg {
@@ -43,6 +47,21 @@ $color-darker-white: #ddd;
       width: 24px;
       fill: #333;
     }
+  }
+}
+
+.add-file-btn {
+  width: 24px;
+  margin: 0 auto;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  color: #888;
+  font-size: 20px;
+
+  &:hover {
+    color: #999999;
   }
 }
 
@@ -98,10 +117,6 @@ $color-darker-white: #ddd;
   &:focus {
     outline: none;
   }
-}
-
-.author-name-box {
-  @extend %input-basic;
 }
 
 .journal-file-name {

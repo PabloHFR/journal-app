@@ -17,6 +17,9 @@ export default class FilesView {
           value="Diário de..."
         />
         <ul class="file-box"></ul>
+        <button class="add-file-btn">
+          <i class="fa-regular fa-plus"></i>
+        </button>
       </aside>
       <div class="journal-box">
         <div class="journal-box--header">
@@ -94,8 +97,13 @@ export default class FilesView {
 
     const journalTextArea = this.root.querySelector(".journal-text-area");
     const journalFileName = this.root.querySelector(".journal-file-name");
+    const addFileBtnElement = this.root.querySelector(".add-file-btn");
 
-    [journalFileName, journalTextArea].forEach((input) => {
+    addFileBtnElement.addEventListener("click", () => {
+      this.onFileAdd();
+    });
+
+    [(journalFileName, journalTextArea)].forEach((input) => {
       input.addEventListener("blur", () => {
         const updatedTitle = journalFileName.value.trim();
         const updatedBody = journalTextArea.textContent.trim();
