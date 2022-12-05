@@ -13,6 +13,10 @@ const view = new FilesView(mainHtmlElement, {
     console.log("File:" + id);
   },
 
+  onFileDelete(id) {
+    console.log("File deleted:" + id);
+  },
+
   onFileEdit(newTitle, newBody) {
     console.log(newTitle, newBody);
   },

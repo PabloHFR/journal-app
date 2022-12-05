@@ -98,6 +98,7 @@ export default class FilesView {
     const journalTextArea = this.root.querySelector(".journal-text-area");
     const journalFileName = this.root.querySelector(".journal-file-name");
     const addFileBtnElement = this.root.querySelector(".add-file-btn");
+    const saveDiskBtnElement = this.root.querySelector(".save-disk-icon");
 
     addFileBtnElement.addEventListener("click", () => {
       this.onFileAdd();
@@ -110,6 +111,13 @@ export default class FilesView {
 
         this.onFileEdit(updatedTitle, updatedBody);
       });
+    });
+
+    saveDiskBtnElement.addEventListener("click", () => {
+      const updatedTitle = journalFileName.value.trim();
+      const updatedBody = journalTextArea.textContent.trim();
+
+      this.onFileEdit(updatedTitle, updatedBody);
     });
   }
 
@@ -150,9 +158,22 @@ export default class FilesView {
       fileBoxListElement.insertAdjacentHTML("beforeend", fileMarkup);
     });
 
+    // Adds select and delete events for each file item
     fileBoxListElement.querySelectorAll(".file-item").forEach((fileItem) => {
       fileItem.addEventListener("click", () => {
         this.onFileSelect(fileItem.dataset.fileId);
+      });
+
+      fileItem.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+
+        const doDelete = confirm(
+          "Tem certeza que deseja deletar este arquivo?"
+        );
+
+        if (doDelete) {
+          this.onFileDelete(fileItem.dataset.fileId);
+        }
       });
     });
   }
