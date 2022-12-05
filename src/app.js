@@ -24,7 +24,10 @@ const view = new FilesView(mainHtmlElement, {
 
 // Init
 
-view.updateFileBoxList(FilesAPI.getAllFiles());
+const files = FilesAPI.getAllFiles();
+
+view.updateFileBoxList(files);
+view.updateActiveFile(files[0]);
 
 richTextEditorButtonsElement.forEach((button) => {
   button.addEventListener("click", () => {

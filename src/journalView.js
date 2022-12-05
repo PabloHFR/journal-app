@@ -177,4 +177,17 @@ export default class FilesView {
       });
     });
   }
+
+  updateActiveFile(file) {
+    this.root.querySelector(".journal-file-name").value = file.title;
+    this.root.querySelector(".journal-text-area").textContent = file.body;
+
+    this.root.querySelectorAll(".file-item").forEach((fileItem) => {
+      fileItem.classList.remove("active");
+    });
+
+    this.root
+      .querySelector(`.file-item[data-file-id="${file.id}"]`)
+      .classList.add("active");
+  }
 }
