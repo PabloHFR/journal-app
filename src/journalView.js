@@ -16,23 +16,7 @@ export default class FilesView {
           maxlength="30"
           value="Diário de..."
         />
-        <ul class="file-box">
-          <li class="file-item">
-            <svg
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-              stroke-linejoin="round"
-              stroke-miterlimit="2"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m10.211 7.155c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591-1.299-1.002-3.945-3.044-5.498-4.243z"
-              />
-            </svg>
-            <span class="file-title">Title</span>
-          </li>
-        </ul>
+        <ul class="file-box"></ul>
       </aside>
       <div class="journal-box">
         <div class="journal-box--header">
@@ -108,17 +92,59 @@ export default class FilesView {
       </div>
     `;
 
-    const fileItemSelect = this.root.querySelector(".file-item");
     const journalTextArea = this.root.querySelector(".journal-text-area");
     const journalFileName = this.root.querySelector(".journal-file-name");
 
-    fileItemSelect.addEventListener("click", () => {
-      this.onFileSelect();
-    });
-
     [journalFileName, journalTextArea].forEach((input) => {
       input.addEventListener("blur", () => {
-        console.log("Blurred");
+        const updatedTitle = journalFileName.value.trim();
+        const updatedBody = journalTextArea.textContent.trim();
+
+        this.onFileEdit(updatedTitle, updatedBody);
+      });
+    });
+  }
+
+  _createListItemHTML(id, title) {
+    const MAX_BODY_LENGTH = 30;
+
+    return `
+    <li class="file-item" data-file-id="${id}">
+            <svg
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+              stroke-linejoin="round"
+              stroke-miterlimit="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10.211 7.155c-.141-.108-.3-.157-.456-.157-.389 0-.755.306-.755.749v8.501c0 .445.367.75.755.75.157 0 .316-.05.457-.159 1.554-1.203 4.199-3.252 5.498-4.258.184-.142.29-.36.29-.592 0-.23-.107-.449-.291-.591-1.299-1.002-3.945-3.044-5.498-4.243z"
+              />
+            </svg>
+            <span class="file-title">
+              ${title.substring(0, MAX_BODY_LENGTH)}
+              ${title.length > MAX_BODY_LENGTH ? "..." : ""}
+            </span>
+          </li>
+    `;
+  }
+
+  updateFileBoxList(files) {
+    const fileBoxListElement = document.querySelector(".file-box");
+
+    // Empty list
+    fileBoxListElement.innerHTML = "";
+
+    files.forEach((file) => {
+      const fileMarkup = this._createListItemHTML(file.id, file.title);
+
+      fileBoxListElement.insertAdjacentHTML("beforeend", fileMarkup);
+    });
+
+    fileBoxListElement.querySelectorAll(".file-item").forEach((fileItem) => {
+      fileItem.addEventListener("click", () => {
+        this.onFileSelect(fileItem.dataset.fileId);
       });
     });
   }
