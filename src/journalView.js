@@ -119,6 +119,8 @@ export default class FilesView {
 
       this.onFileEdit(updatedTitle, updatedBody);
     });
+
+    this.updateJournalVisibility(false);
   }
 
   _createListItemHTML(id, title) {
@@ -189,5 +191,11 @@ export default class FilesView {
     this.root
       .querySelector(`.file-item[data-file-id="${file.id}"]`)
       .classList.add("active");
+  }
+
+  updateJournalVisibility(visible) {
+    this.root.querySelector(".journal-box").style.visibility = visible
+      ? "visible"
+      : "hidden";
   }
 }
