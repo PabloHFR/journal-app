@@ -99,6 +99,7 @@ export default class FilesView {
     const journalFileName = this.root.querySelector(".journal-file-name");
     const addFileBtnElement = this.root.querySelector(".add-file-btn");
     const saveDiskBtnElement = this.root.querySelector(".save-disk-icon");
+    const richTextEditorButtonsElement = document.querySelectorAll(".btn");
 
     addFileBtnElement.addEventListener("click", () => {
       this.onFileAdd();
@@ -107,7 +108,7 @@ export default class FilesView {
     [(journalFileName, journalTextArea)].forEach((input) => {
       input.addEventListener("blur", () => {
         const updatedTitle = journalFileName.value.trim();
-        const updatedBody = journalTextArea.textContent.trim();
+        const updatedBody = journalTextArea.innerHTML.trim();
 
         this.onFileEdit(updatedTitle, updatedBody);
       });
@@ -115,9 +116,27 @@ export default class FilesView {
 
     saveDiskBtnElement.addEventListener("click", () => {
       const updatedTitle = journalFileName.value.trim();
-      const updatedBody = journalTextArea.textContent.trim();
+      const updatedBody = journalTextArea.innerHTML.trim();
 
       this.onFileEdit(updatedTitle, updatedBody);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault();
+        const updatedTitle = journalFileName.value.trim();
+        const updatedBody = journalTextArea.innerHTML.trim();
+
+        this.onFileEdit(updatedTitle, updatedBody);
+      }
+    });
+
+    richTextEditorButtonsElement.forEach((button) => {
+      button.addEventListener("click", () => {
+        let command = button.dataset.edit;
+
+        document.execCommand(command, false, null);
+      });
     });
 
     this.updateJournalVisibility(false);
@@ -182,7 +201,7 @@ export default class FilesView {
 
   updateActiveFile(file) {
     this.root.querySelector(".journal-file-name").value = file.title;
-    this.root.querySelector(".journal-text-area").textContent = file.body;
+    this.root.querySelector(".journal-text-area").innerHTML = file.body;
 
     this.root.querySelectorAll(".file-item").forEach((fileItem) => {
       fileItem.classList.remove("active");

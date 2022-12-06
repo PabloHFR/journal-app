@@ -34,16 +34,33 @@ export default class JournalApp {
   _handlers() {
     return {
       onFileSelect: (fileId) => {
-        console.log("Note selected: " + fileId);
+        const selectedFile = this.files.find((file) => file.id === +fileId);
+        this._setActiveFile(selectedFile);
       },
+
       onFileAdd: () => {
-        console.log("Note add");
+        const newFile = {
+          title: "Nome do arquivo...",
+          body: "Comece a escrever!",
+        };
+
+        FilesAPI.saveFile(newFile);
+        this._refreshFiles();
       },
+
       onFileEdit: (title, body) => {
-        console.log(title, body);
+        FilesAPI.saveFile({
+          id: this.activeFile.id,
+          title: title,
+          body: body,
+        });
+
+        this._refreshFiles();
       },
+
       onFileDelete: (fileId) => {
-        console.log("Note deleted: " + fileId);
+        FilesAPI.deleteFile(fileId);
+        this._refreshFiles();
       },
     };
   }
