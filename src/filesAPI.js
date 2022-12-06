@@ -2,7 +2,9 @@ export default class FilesAPI {
   static getAllFiles() {
     const files = JSON.parse(localStorage.getItem("files") || "[]");
 
-    return files;
+    return files.sort((a, b) => {
+      return new Date(a.updated) > new Date(b.updated) ? 1 : -1;
+    });
   }
 
   static saveFile(fileToSave) {

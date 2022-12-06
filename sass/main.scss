@@ -22,8 +22,16 @@ $color-darker-white: #ddd;
   border-right: 1.5px solid rgba($color-darker-white, 0.5);
 }
 
-.author-name-box {
-  @extend %input-basic;
+.app-name-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid rgba($color-darker-white, 0.5);
   margin-bottom: 0.5rem;
 }
 
@@ -101,8 +109,7 @@ $color-darker-white: #ddd;
   margin-right: 2rem;
 }
 
-.save-disk-icon,
-.dark-mode-moon-icon {
+.save-disk-icon {
   height: 22px;
   width: 22px;
   fill: #555;
@@ -148,13 +155,14 @@ $color-darker-white: #ddd;
   height: 30px;
   background-color: white;
   border-bottom: 1px solid rgba($color-darker-white, 0.5);
-}
 
-.btn {
-  color: #555;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
+  .btn {
+    color: #555;
+    padding: 0.3rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
 }
 
 .journal-text-area {
