@@ -12,11 +12,12 @@ export default class JournalApp {
 
   _refreshFiles() {
     const files = FilesAPI.getAllFiles();
+    const filesLastIndex = files.length - 1;
 
     this._setFiles(files);
 
     if (files.length > 0) {
-      this._setActiveFile(files[0]);
+      this._setActiveFile(files[filesLastIndex]);
     }
   }
 

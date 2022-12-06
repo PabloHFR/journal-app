@@ -10,12 +10,11 @@ export default class FilesView {
     this.onFileDelete = onFileDelete;
     this.root.innerHTML = `
       <aside class="sidebar">
-        <input
-          class="author-name-box"
-          type="text"
-          maxlength="30"
-          value="Diário de..."
-        />
+        <div
+          class="app-name-box"
+        >
+        Journal App
+        </div>
         <ul class="file-box"></ul>
         <button class="add-file-btn">
           <i class="fa-regular fa-plus"></i>
@@ -105,15 +104,6 @@ export default class FilesView {
       this.onFileAdd();
     });
 
-    [(journalFileName, journalTextArea)].forEach((input) => {
-      input.addEventListener("blur", () => {
-        const updatedTitle = journalFileName.value.trim();
-        const updatedBody = journalTextArea.innerHTML.trim();
-
-        this.onFileEdit(updatedTitle, updatedBody);
-      });
-    });
-
     saveDiskBtnElement.addEventListener("click", () => {
       const updatedTitle = journalFileName.value.trim();
       const updatedBody = journalTextArea.innerHTML.trim();
@@ -143,7 +133,7 @@ export default class FilesView {
   }
 
   _createListItemHTML(id, title) {
-    const MAX_BODY_LENGTH = 30;
+    const MAX_BODY_LENGTH = 20;
 
     return `
     <li class="file-item" data-file-id="${id}">

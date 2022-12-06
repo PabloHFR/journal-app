@@ -22,8 +22,16 @@ $color-darker-white: #ddd;
   border-right: 1.5px solid rgba($color-darker-white, 0.5);
 }
 
-.author-name-box {
-  @extend %input-basic;
+.app-name-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid rgba($color-darker-white, 0.5);
   margin-bottom: 0.5rem;
 }
 
