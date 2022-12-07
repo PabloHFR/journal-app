@@ -42,38 +42,6 @@ export default class FilesView {
           </div>
         </div>
         <div class="journal-box--journal">
-          <div class="rich-text-editor">
-            <button type="button" class="btn" data-edit="bold">
-              <i class="fa-solid fa-bold fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="italic">
-              <i class="fa-solid fa-italic fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="underline">
-              <i class="fa-solid fa-underline fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="insertUnorderedList">
-              <i class="fa-solid fa-list-ul fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="insertOrderedList">
-              <i class="fa-solid fa-list-ol fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="createLink">
-              <i class="fa-solid fa-link fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="justifyLeft">
-              <i class="fa-solid fa-align-left fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="justifyCenter">
-              <i class="fa-solid fa-align-center fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="justifyRight">
-              <i class="fa-solid fa-align-right fa-xl"></i>
-            </button>
-            <button type="button" class="btn" data-edit="justifyFull">
-              <i class="fa-solid fa-align-justify fa-xl"></i>
-            </button>
-          </div>
           <div
             class="journal-text-area"
             contenteditable="true"
@@ -87,7 +55,6 @@ export default class FilesView {
     const journalFileName = this.root.querySelector(".journal-file-name");
     const addFileBtnElement = this.root.querySelector(".add-file-btn");
     const saveDiskBtnElement = this.root.querySelector(".save-disk-icon");
-    const richTextEditorButtonsElement = document.querySelectorAll(".btn");
 
     addFileBtnElement.addEventListener("click", () => {
       this.onFileAdd();
@@ -119,20 +86,6 @@ export default class FilesView {
 
         this.onFileEdit(updatedTitle, updatedBody);
       }
-    });
-
-    richTextEditorButtonsElement.forEach((button) => {
-      button.addEventListener("click", () => {
-        let command = button.dataset.edit;
-
-        if (button.classList.contains("active-btn")) {
-          button.classList.remove("active-btn");
-          document.execCommand(command, false, null);
-        } else {
-          button.classList.add("active-btn");
-          document.execCommand(command, false, null);
-        }
-      });
     });
 
     this.updateJournalVisibility(false);
