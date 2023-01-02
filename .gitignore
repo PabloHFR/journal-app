@@ -1,0 +1,4 @@
+.gitignore
+.parcel-cache
+node_modules
+ideias.md
