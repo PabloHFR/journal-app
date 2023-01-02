@@ -1,0 +1,28 @@
+.file-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+  list-style: none;
+
+  .file-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 90%;
+    cursor: pointer;
+    border-radius: 8px;
+
+    svg {
+      height: 24px;
+      width: 24px;
+      fill: $color-dark-gray;
+    }
+  }
+
+  .active {
+    background-color: $color-darker-white;
+    border: 2px solid $color-darker-white;
+  }
+}

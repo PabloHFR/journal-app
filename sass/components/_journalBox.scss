@@ -1,0 +1,37 @@
+.journal-box--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  width: 100%;
+  background-color: $color-medium-white;
+  border-bottom: 1.5px solid rgba($color-darker-white, 0.5);
+
+  .journal-file-name {
+    @extend %input-basic;
+    width: 80%;
+  }
+}
+
+.journal-box--journal {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 93vh;
+  margin: 0 1rem;
+  background-color: white;
+  box-shadow: 0px 6px 12px rgba($color-full-black, 0.2);
+
+  .journal-text-area {
+    font-size: 1.25rem;
+    columns: $color-dark-gray;
+    background-color: white;
+    padding: 1.5rem 2rem;
+    width: 80vw;
+    height: 100%;
+    text-indent: 20px;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+%input-basic {
+  height: 2rem;
+  width: 100%;
+  padding-left: 2rem;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  color: color-medium-gray;
+  border: none;
+  border-bottom: 1px solid rgba($color-darker-white, 0.5);
+
+  &:focus {
+    outline: none;
+  }
+}
